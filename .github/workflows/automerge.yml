@@ -1,0 +1,2 @@
+- name: Automatic Merge
+  uses: lots0logs/gh-action-auto-merge@1.0.0

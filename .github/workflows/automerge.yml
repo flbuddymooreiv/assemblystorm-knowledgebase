@@ -34,7 +34,7 @@ jobs:
         HEAD_BRANCH=$(echo "$pr_resp" | jq -r .head.ref)
         BASE_BRANCH=$(echo "$pr_resp" | jq -r .base.ref)
 
-        git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$REPO_FULLNAME.git
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$REPO_FULLNAME.git
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Merge Action"
 

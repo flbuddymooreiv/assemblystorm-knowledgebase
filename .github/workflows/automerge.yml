@@ -4,9 +4,9 @@ on:
   pull_request:
     branches:
       - "main"
-    paths:
-      - "*.html"
-
+    paths-ignore:
+      - ".github/**"
+      
 jobs:
   merge_pr:
     runs-on: ubuntu-latest

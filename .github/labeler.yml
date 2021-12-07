@@ -1,3 +1,6 @@
 # Add 'ready' to any changes within any folder or any subfolders
 ready:
   - '*'
+
+do not merge:
+  - '.github/**'

@@ -11,38 +11,9 @@ jobs:
   merge_pr:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout pull request branch on forked repo
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        ref: ${{github.event.pull_request.head.ref}}
-        repository: ${{github.event.pull_request.head.repo.full_name}}
-        token: ${{ github.token }}
-    - name: Auto merge pull request
-      run: |
-        PR_NUMBER=$(jq -r ".number" "$GITHUB_EVENT_PATH")
-        REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
-        echo "Collecting information about PR #$PR_NUMBER of $REPO_FULLNAME"
-
-        URI=https://api.github.com
-        API_HEADER="Accept: application/vnd.github.v3+json"
-        AUTH_HEADER="Authorization: token ${{ secrets.DEPLOY_TOKEN }}"
-
-        pr_resp=$(curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/$REPO_FULLNAME/pulls/$PR_NUMBER")
-
-        HEAD_REPO=$(echo "$pr_resp" | jq -r .head.repo.full_name)
-        HEAD_BRANCH=$(echo "$pr_resp" | jq -r .head.ref)
-        BASE_BRANCH=$(echo "$pr_resp" | jq -r .base.ref)
-
-        git remote set-url origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/$REPO_FULLNAME.git
-        git config --global user.email "actions@github.com"
-        git config --global user.name "GitHub Merge Action"
-
-        set -o xtrace
-
-        git fetch origin $BASE_BRANCH
-        git checkout $BASE_BRANCH
-
-        # do the merge
-        git merge $HEAD_BRANCH --no-edit
-        git push origin $BASE_BRANCH
+  - name: Merge Pull Request
+    uses: juliangruber/merge-pull-request-action@v1
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      number: 1
+      method: squash

@@ -1,6 +1,7 @@
 name: Automatic Label and Merge
 on:
   pull_request_target:
+    types: [opened, edited]
 
 jobs:
   Labeler:  # https://github.com/marketplace/actions/labeler

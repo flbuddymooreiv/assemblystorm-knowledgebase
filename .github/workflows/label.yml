@@ -1,7 +1,6 @@
 name: Automatic Label and Merge
 on:
-  schedule:
-  - cron: "0/5 * * * *"
+  pull_request_target:
 
 jobs:
   Labeler:  # https://github.com/marketplace/actions/labeler

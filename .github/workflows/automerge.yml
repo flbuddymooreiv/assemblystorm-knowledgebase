@@ -7,7 +7,8 @@ on:
 jobs:
   merge:
     runs-on: ubuntu-latest
-    pull-requests: write
+    permissions:
+      pull-requests: write
 
     steps:
       - name: Merge Pull Request

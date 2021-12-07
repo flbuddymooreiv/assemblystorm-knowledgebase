@@ -3,13 +3,15 @@ on:
   pull_request:
     paths-ignore:
       - '.github/**'
+
 jobs:
-  build:
+  merge:
     runs-on: ubuntu-latest
+
     steps:
-  - name: Merge Pull Request
-    uses: juliangruber/merge-pull-request-action@v1
-    with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      number: 1
-      method: squash
+      - name: Merge Pull Request
+        uses: juliangruber/merge-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 1
+          method: squash

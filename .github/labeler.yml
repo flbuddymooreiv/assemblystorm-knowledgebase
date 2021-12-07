@@ -3,5 +3,5 @@ ready:
 - any: '*'
   all: ['!.github', '!.github/**/*']
 
-do-not-merge:
-  any: ['.github', '.github/**/*']
+do not merge:
+- any: ['.github', '.github/**/*']

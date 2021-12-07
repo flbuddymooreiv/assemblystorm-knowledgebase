@@ -1,4 +1,4 @@
-name: "Pull Request Labeler"
+name: Automatic Label and Merge
 on:
   pull_request:
 
@@ -10,7 +10,7 @@ jobs:
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
-  Merge:  # https://github.com/marketplace/actions/pr-merge-bot
+  Merger:  # https://github.com/marketplace/actions/pr-merge-bot
     needs: Labeler
     runs-on: ubuntu-latest
     name: Merge
@@ -19,8 +19,8 @@ jobs:
       uses: squalrus/merge-bot@v0.4.5
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        test: false
         reviewers: false
+        blocking_labels: do not automerge
         checks_enabled: true
         method: squash
         delete_source_branch: true

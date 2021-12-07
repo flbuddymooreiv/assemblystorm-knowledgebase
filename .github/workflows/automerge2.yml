@@ -4,6 +4,23 @@ on:
   pull_request:
 
 jobs:
+  approve:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: hmarr/auto-approve-action@v2
+      with:
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
+  labelWhenApproved:
+    name: Label when approved
+    runs-on: ubuntu-latest
+    steps:
+    - name: Label when approved
+      uses: pullreminders/label-when-approved-action@master
+      env:
+        APPROVALS: "2"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ADD_LABEL: "ready"
+        REMOVE_LABEL: "awaiting%20review"
   merge:
     runs-on: ubuntu-latest
     name: Merge
@@ -14,7 +31,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         test: true
         reviewers: false
-        labels:
+        labels: ready
         checks_enabled: false
         method: squash
         delete_source_branch: false

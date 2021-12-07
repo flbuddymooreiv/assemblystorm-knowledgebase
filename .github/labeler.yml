@@ -1,4 +1,4 @@
-# Add 'ready' to any changes within any folder or any subfolders
+# Add 'ready' to any changes within any folder or any subfolders/
 ready:
 - '*'
 

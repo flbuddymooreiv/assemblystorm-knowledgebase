@@ -1,9 +1,21 @@
-name: Merge Bot
+name: label Bot
 
 on:
-  delete:
+  label:
+    types: [created, deleted]
 
 jobs:
+  label:
+    name: Label when approved
+    runs-on: ubuntu-latest
+    steps:
+    - name: Label when approved
+      uses: pullreminders/label-when-approved-action@master
+      env:
+        APPROVALS: "0"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ADD_LABEL: "ready"
+
   merge:
     needs: label
     runs-on: ubuntu-latest

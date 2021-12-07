@@ -1,8 +1,7 @@
 name: label Bot
 
 on:
-  label:
-    types: [created, deleted]
+  pull_request_review:
 
 jobs:
   label:
@@ -15,19 +14,3 @@ jobs:
         APPROVALS: "0"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ADD_LABEL: "ready"
-
-  merge:
-    needs: label
-    runs-on: ubuntu-latest
-    name: Merge
-    steps:
-    - name: Integration check
-      uses: squalrus/merge-bot@v0.1.0
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        test: true
-        reviewers: false
-        labels: ready
-        checks_enabled: false
-        method: squash
-        delete_source_branch: false

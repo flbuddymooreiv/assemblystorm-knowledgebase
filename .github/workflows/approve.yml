@@ -1,4 +1,4 @@
-name: Merge Bot
+name: approve Bot
 
 on:
   pull_request:

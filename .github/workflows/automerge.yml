@@ -1,7 +1,8 @@
 name: Merge Bot
 
 on:
-  delete:
+  label:
+    types: [created, deleted]
 
 jobs:
   merge:

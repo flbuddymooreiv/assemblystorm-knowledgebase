@@ -3,15 +3,15 @@ on:
   pull_request:
 
 jobs:
-  triage:  # https://github.com/marketplace/actions/labeler
+  Labeler:  # https://github.com/marketplace/actions/labeler
     runs-on: ubuntu-latest
     steps:
     - uses: actions/labeler@v3
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
-  merge:  # https://github.com/marketplace/actions/pr-merge-bot
-    needs: triage
+  Merge:  # https://github.com/marketplace/actions/pr-merge-bot
+    needs: Labeler
     runs-on: ubuntu-latest
     name: Merge
     steps:

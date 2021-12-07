@@ -14,6 +14,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         test: true
         reviewers: false
+        labels:
         checks_enabled: false
         method: squash
         delete_source_branch: false

@@ -6,7 +6,7 @@ on:
       - ".github/**"
 
 jobs:
-  merge_pr:
+  build:
     runs-on: ubuntu-latest
     steps:
   - name: Merge Pull Request

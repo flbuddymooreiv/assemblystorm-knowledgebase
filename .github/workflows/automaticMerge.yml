@@ -1,7 +1,7 @@
 name: Automatic Merge
 on:
   pull_request_target:
-    types: [labeled, edited]
+    types: [labeled, unlabeled]
 
 permissions: write-all
 
@@ -16,6 +16,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         test: true
         reviewers: false
+        labels: [""]
         blocking_labels: do not automerge
         checks_enabled: false
         method: squash

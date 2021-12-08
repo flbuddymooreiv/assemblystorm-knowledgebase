@@ -2,6 +2,7 @@ name: automerge
 on:
   pull_request_target:
     types: [opened, edited]
+    paths-ignore: ['.github/**/*', '.github']
 
 jobs:
   automerge:  # https://github.com/marketplace/actions/merge-pull-requests-automerge-action

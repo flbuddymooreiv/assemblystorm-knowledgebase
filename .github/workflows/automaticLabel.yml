@@ -1,0 +1,14 @@
+name: Automatic Label
+on:
+  pull_request_target:
+    types: [opened, edited]
+
+permissions: write-all
+
+jobs:
+  Labeler:  # https://github.com/marketplace/actions/labeler
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@v3
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

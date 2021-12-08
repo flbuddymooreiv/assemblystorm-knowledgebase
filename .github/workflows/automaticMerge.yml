@@ -1,20 +1,12 @@
-name: Automatic Label and Merge
+name: Automatic Merge
 on:
   pull_request_target:
-    types: [opened, edited]
+    types: [labeled, edited]
 
 permissions: write-all
 
 jobs:
-  Labeler:  # https://github.com/marketplace/actions/labeler
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/labeler@v3
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-
   Merger:  # https://github.com/marketplace/actions/pr-merge-bot
-    needs: Labeler
     runs-on: ubuntu-latest
     name: Merge
     steps:
